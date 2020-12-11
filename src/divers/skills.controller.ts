@@ -10,8 +10,7 @@ export class SkillsController{
 
     @Post('')
     checkPipe(@Body(CustomPipe) skills: string[])  {
-        
-        
+        return skills;
     }
 
   
