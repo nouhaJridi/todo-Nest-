@@ -3,6 +3,7 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { TodoModel } from "./models/todo.model";
+import { FirstPipe } from 'src/pipes/first.pipe';
 
 @Controller('todo')
 export class TodoController{
@@ -16,12 +17,12 @@ export class TodoController{
     }
 
     @Get(':id')
-    getTodoById(@Param('id') id : string) : TodoModel {
+    getTodoById(@Param('id' ) id : string) : TodoModel {
         return this.todoService.getToDoById(id);
     }
 
     @Post('')
-    addTodo(@Body() newTodo: CreateTodoDto) : TodoModel {
+    addTodo(@Body(FirstPipe) newTodo: CreateTodoDto) : TodoModel {
         return this.todoService.addTodo(newTodo);
     }
 
